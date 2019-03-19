@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/welcome/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/IOS适配小结/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFlainsF">
@@ -284,7 +284,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/26/welcome/" itemprop="url">tags</a></h1>
+                <a class="post-title-link" href="/2019/02/28/IOS适配小结/" itemprop="url">IOS适配小结</a></h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T00:00:00+08:00">
-                2019-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T00:00:00+08:00">
+                2019-02-28
               </time>
             
 
@@ -306,6 +306,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -367,7 +389,211 @@
       
         
           
-            <h1 id="welcome-to-my-blog"><a href="#welcome-to-my-blog" class="headerlink" title="welcome to my blog"></a>welcome to my blog</h1><p>date: 2018-06-07 00:38:36<br>categories: 学习笔记</p>
+            <h2 id="IOS适配"><a href="#IOS适配" class="headerlink" title="IOS适配"></a>IOS适配</h2><h4 id="IOS-有几个常见的问题，踩了大坑所以在此记录下下"><a href="#IOS-有几个常见的问题，踩了大坑所以在此记录下下" class="headerlink" title="IOS 有几个常见的问题，踩了大坑所以在此记录下下"></a>IOS 有几个常见的问题，踩了大坑所以在此记录下下</h4><p><strong>坑</strong>：</p>
+<ul>
+<li>有些IOS收起键盘时会卡住</li>
+<li>微信浏览器默认没绑定全局（document）<code>click</code>事件（深坑）</li>
+<li>弹起键盘页面被顶上去的问题</li>
+<li>IOS端 Date.parse()异常的问题</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><blockquote>
+<p> <strong>IOS收起键盘时页面卡住了：</strong></p>
+<p>可以做一个失去焦点的判断，然后回归页面本位</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input'</span>).blur(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.scroll(<span class="number">0</span>, <span class="number">0</span>);<span class="comment">//让页面归位</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>微信浏览器默认没绑定全局（document）<code>click</code>事件</strong></p>
+<p>这个问题绑定下事件就好了，可惜当时不知道，困扰了我很久，百思不得起解，深坑~~~</p>
+<p>为啥用click？因为VUE默认没 tap 事件，【其实可用<code>touchstart.prevent</code> 代替】</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IOS 微信浏览器开启点击事件</span></span><br><span class="line">$(<span class="string">"body&gt;*"</span>).bind(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</span><br><span class="line"><span class="comment">// other click</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>弹起键盘页面被顶上去的问题</strong></p>
+<p>这个问题很常见了，贴一个常见的解决方案</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> oh = $(<span class="built_in">window</span>).height()</span><br><span class="line">$(<span class="built_in">window</span>).resize(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="built_in">window</span>).height() &lt; oh) &#123;</span><br><span class="line">        $(<span class="string">'body'</span>).css(<span class="string">'height'</span>, <span class="string">`<span class="subst">$&#123;oh&#125;</span>px`</span>)</span><br><span class="line">        $(<span class="string">'select'</span>).css(<span class="string">'height'</span>, <span class="string">`<span class="subst">$&#123;oh&#125;</span>px`</span>)</span><br><span class="line">        <span class="comment">// other logic</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="IOS端-Date-parse-异常的问题"><a href="#IOS端-Date-parse-异常的问题" class="headerlink" title="IOS端 Date.parse()异常的问题"></a>IOS端 Date.parse()异常的问题</h4><p>原因是 ‘2019-11-11’ 这种格式是不可以地 换成  ‘2019/11/11’即可</p>
+<p><code>&#39;2019-11-11&#39;.replace(/-/g, &#39;/&#39;)</code> </p>
+</blockquote>
+<blockquote>
+<p>最后记一个建议：</p>
+<p>在IOS端，click 事件通常会有奇怪的问题，可以的话用touch类的事件代替</p>
+<p>The End | 2019-02-28</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/welcome/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFlainsF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="F的静态博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/26/welcome/" itemprop="url">welcome</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T00:00:00+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="welcome-to-my-blog"><a href="#welcome-to-my-blog" class="headerlink" title="welcome to my blog"></a>welcome to my blog</h1><hr>
 <ul>
 <li>基于 hexo + next 构建了我的第一个静态博客</li>
 <li>2019-1-31</li>
@@ -613,12 +839,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -626,7 +861,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
