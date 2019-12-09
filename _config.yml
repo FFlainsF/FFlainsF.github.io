@@ -4,12 +4,12 @@
 
 # Site
 title: F's bolg
-subtitle:
-description:
-keywords:
+subtitle: 
+description: A personal static blog 
+keywords: WEB | JS | Java | Maching learning
 author: FF
 language: CN
-timezone:
+timezone: UTC
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -73,9 +73,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+	type: git
+  repo: https://github.com/FFlainsF/FFlainsF.github.io.git
+  branch: master
