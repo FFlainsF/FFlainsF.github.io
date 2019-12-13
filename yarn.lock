@@ -1292,6 +1292,11 @@ hexo-i18n@^0.2.1:
   dependencies:
     sprintf-js "^1.0.2"
 
+hexo-less@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/hexo-less/-/hexo-less-0.1.0.tgz#2f86227629973bca37f85300b3db9f482a59ccd3"
+  integrity sha1-L4YidimXO8o3+FMAs9ufSCpZzNM=
+
 hexo-log@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/hexo-log/-/hexo-log-0.2.0.tgz#d30fd45e1a12a83c88033586640485efc5df5a6f"
@@ -1353,6 +1358,25 @@ hexo-server@^0.3.3:
     object-assign "^4.1.1"
     opn "^5.3.0"
     serve-static "^1.13.2"
+
+hexo-symbols-count-time@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/hexo-symbols-count-time/-/hexo-symbols-count-time-0.7.0.tgz#71bc58f7c0e7e32ecb2f4820d7c8b4dddee4f47d"
+  integrity sha512-x2ahTBI6SDTRz0i+EfbMwdQv0ioIji0EE5i8iswbEGsbK9ompDX0f0K73L7sNUL/cp48vRCYge1TzPzPr22M5A==
+  dependencies:
+    hexo-util "1.5.0"
+
+hexo-util@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-1.5.0.tgz#bf931c176d4d19965b9e154a4b6767cdde6e2b9c"
+  integrity sha512-AIDf3xnn4+E+2uiKh7Qk+sH6HH/CFME38Kvi4hqnMPks8BDACWvfXoMOK4mydGfjps96tsMwdLT5+AQx1xv6PQ==
+  dependencies:
+    bluebird "^3.5.2"
+    camel-case "^3.0.0"
+    cross-spawn "^7.0.0"
+    highlight.js "^9.13.1"
+    html-entities "^1.2.1"
+    striptags "^3.1.1"
 
 hexo-util@^0.6.2, hexo-util@^0.6.3:
   version "0.6.3"
@@ -1420,7 +1444,7 @@ highlight.js@^9.4.0:
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.10.tgz#7b18ed75c90348c045eef9ed08ca1319a2219ad2"
   integrity sha512-RoV7OkQm0T3os3Dd2VHLNMoaoDVx77Wygln3n9l5YV172XonWG6rgQD3XnF/BuFFZw9A0TJgmMSO8FEWQgvcXw==
 
-html-entities@^1.2.0:
+html-entities@^1.2.0, html-entities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
   integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=

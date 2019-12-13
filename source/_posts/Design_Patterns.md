@@ -1,9 +1,15 @@
 ---
 title: 设计模式
+date:  null
 tags: framework
+categories: 设计模式
 ---
 
 ## 设计模式—笔记
+
+<!--less-->
+
+
 
 >创建型
 >

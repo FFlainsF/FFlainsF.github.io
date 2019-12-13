@@ -8,7 +8,7 @@ subtitle:
 description: A personal static blog 
 keywords: WEB | JS | Java | Maching learning
 author: FF
-language: CN
+language: zh-CN
 timezone: UTC
 
 # URL
@@ -74,6 +74,26 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+# RSS订阅
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+
+# 字数统计和阅读时长
+symbols_count_time:
+ #文章内是否显示
+  symbols: true
+  time: true
+ # 网页底部是否显示
+  total_symbols: true
+  total_time: true
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

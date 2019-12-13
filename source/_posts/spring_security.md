@@ -1,6 +1,12 @@
 ---
 title: spring security 学习
+tags: spring
+categories: JAVA
 ---
+
+## spring security 学习
+
+
 
 > 1.  拦截器链
 > 2.  主要类/组件
@@ -9,6 +15,11 @@ title: spring security 学习
 > 5.  总结
 >
 > [中文机翻文档](https://www.springcloud.cc/spring-security-zhcn.html#overall-architecture)
+
+
+
+<!--less-->
+
 
 ## 一. 拦截器链
 

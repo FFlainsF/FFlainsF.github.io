@@ -1,6 +1,7 @@
 ---
 title: Vue click expends
 tags: vue
+categories:  前端
 ---
 
 >#### 自定义点击指令,包括:
@@ -8,7 +9,11 @@ tags: vue
 >- 鼠标时间 – pc端
 >- touch – 移动端
 
----
+
+
+## Vue click expends
+
+<!--less-->
 
 
 

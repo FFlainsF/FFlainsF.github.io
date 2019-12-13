@@ -1,12 +1,12 @@
 ---
 title: Vue tips
 tags: vue
+categories:  前端
 ---
 
+##  Vue tips
 
-
-> ​	
-> 
+<!--less-->
 
 
 

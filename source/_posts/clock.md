@@ -1,8 +1,14 @@
 ---
-title: 计时器
-tags: JS
-
+title:  计时器
+date:  2019-11-27 15:29:12
+tags:  JS
+categories:  前端组件
 ---
+
+## JS计时器
+
+<!--less-->
+
 
 
 ```js
